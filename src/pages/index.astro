@@ -1,0 +1,182 @@
+---
+import { Icon } from 'astro-icon';
+
+// List of social/media/download links for Dreami
+let links = [
+  { href: "https://www.instagram.com/appdreami", text: "Instagram", icon: "mdi:instagram" },
+  { href: "https://www.linkedin.com/company/dreamiapp", text: "LinkedIn", icon: "mdi:linkedin" },
+  { href: "https://dreamiapp.com/", text: "Website", icon: "mdi:web" },
+  { href: "#", text: "Download on iOS (Coming Soon)", icon: "mdi:apple", disabled: true },
+  { href: "#", text: "Download on Android (Coming Soon)", icon: "mdi:android", disabled: true },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Dreami</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/mainlogo2.png" />
+
+    <style>
+      /* Base Reset */
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Background and layout */
+      body {
+        background: radial-gradient(circle at top, #210033, #0c0013); /* dreamy purple gradient */
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+
+      /* Main container card */
+      .card {
+        width: 100%;
+        max-width: 420px;
+        background: rgba(255, 255, 255, 0.06); /* translucent background */
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 3.4rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Logo image (square, no outline) */
+      .logo {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        margin-bottom: 1rem;
+      }
+
+      /* Heading and tagline */
+      h1 {
+        margin: 0.2rem 0 0.4rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: #cbbfea;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Button container */
+      .button-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      /* Individual button styling */
+      .button-list a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 0.9rem 1.1rem;
+        border-radius: 6px;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.2s ease;
+        font-size: 0.9rem;
+      }
+
+      /* Hover effect for active links */
+      .button-list a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* Disabled buttons */
+      .button-list a[disabled] {
+        background-color: rgba(255, 255, 255, 0.08);
+        color: #aaa;
+        pointer-events: none;
+      }
+
+      /* Link content layout */
+      .button-list a span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Arrow icon styling */
+      .arrow-icon svg {
+        font-size: 1.1em;
+        color: #fff;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .button-list a:hover .arrow-icon svg {
+        transform: translateX(5px);
+      }
+
+      /* Footer */
+      .footer {
+        margin-top: 2rem;
+        font-size: 0.8rem;
+        color: #aaa;
+      }
+
+      /* Responsive text sizing */
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.3rem;
+        }
+        p {
+          font-size: 0.85rem;
+        }
+        .button-list a {
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <!-- Logo Image (Square) -->
+      <img src="/assets/mainlogo.png" alt="Dreami Logo" class="logo" />
+
+      <!-- App Name & Tagline -->
+      <h1>Dreami</h1>
+      <p>Bringing clarity to your dreams with AI</p>
+
+      <!-- Link List -->
+      <div class="button-list">
+        {links.map((link) => (
+          <a href={link.href} target="_blank" disabled={link.disabled}>
+            <span>
+              <Icon name={link.icon} width="20px" height="20px" />
+              {link.text}
+            </span>
+            <span class="arrow-icon">
+              <Icon name="mdi:arrow-right" width="20px" height="20px" />
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Footer Text -->
+      <div class="footer">
+        Dreami © {new Date().getFullYear()}
+      </div>
+    </div>
+  </body>
+</html>
