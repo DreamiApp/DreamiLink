@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 
+// List of social and app links displayed on the card
 let links = [
   { href: "https://www.instagram.com/appdreami", text: "Instagram", icon: "mdi:instagram" },
   { href: "https://www.linkedin.com/company/dreamiapp", text: "LinkedIn", icon: "mdi:linkedin" },
@@ -16,16 +17,20 @@ let links = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>Dreami</title>
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/mainlogo2.png" />
 
     <style>
+      /* Basic reset */
       html, body {
         margin: 0;
         padding: 0;
       }
 
+      /* Background and body styling */
       body {
-        background: radial-gradient(circle at top, #210033, #0c0013);
+        background: radial-gradient(circle at top, #210033, #0c0013); /* dreamy gradient */
         color: #ffffff;
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         display: flex;
@@ -35,19 +40,21 @@ let links = [
         padding: 1rem;
       }
 
+      /* Main card container */
       .card {
         width: 100%;
         max-width: 420px;
-        background: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(16px);
+        background: rgba(255, 255, 255, 0.06); /* translucent background */
+        backdrop-filter: blur(16px);           /* frosted glass effect */
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 16px;
         padding: 2rem;
         text-align: center;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4); /* soft outer shadow */
         animation: fadeIn 1s ease;
       }
 
+      /* Logo with floating animation */
       .logo {
         width: 90px;
         height: 90px;
@@ -56,12 +63,14 @@ let links = [
         animation: float 4s ease-in-out infinite;
       }
 
+      /* Floating animation for the logo */
       @keyframes float {
         0%   { transform: translateY(0); }
         50%  { transform: translateY(-6px); }
         100% { transform: translateY(0); }
       }
 
+      /* Main title */
       h1 {
         margin: 0.2rem 0 0.4rem;
         font-size: 1.6rem;
@@ -69,18 +78,21 @@ let links = [
         letter-spacing: 0.5px;
       }
 
+      /* Tagline */
       p {
         font-size: 0.95rem;
         color: #cbbfea;
         margin-bottom: 1.5rem;
       }
 
+      /* Button container */
       .button-list {
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
       }
 
+      /* Individual button links */
       .button-list a {
         display: flex;
         align-items: center;
@@ -95,24 +107,28 @@ let links = [
         font-size: 0.9rem;
       }
 
+      /* Hover effect for interactive buttons */
       .button-list a:hover {
         background-color: rgba(255, 255, 255, 0.2);
         transform: translateY(-2px);
         box-shadow: 0 0 10px rgba(203, 191, 234, 0.3);
       }
 
+      /* Style for disabled buttons */
       .button-list a[disabled] {
         background-color: rgba(255, 255, 255, 0.08);
         color: #aaa;
         pointer-events: none;
       }
 
+      /* Layout for icon + text inside buttons */
       .button-list a span {
         display: flex;
         align-items: center;
         gap: 0.5rem;
       }
 
+      /* Right arrow icon hover effect */
       .arrow-icon svg {
         font-size: 1.1em;
         color: #fff;
@@ -123,24 +139,41 @@ let links = [
         transform: translateX(5px);
       }
 
+      /* Footer */
       .footer {
         margin-top: 2rem;
         font-size: 0.8rem;
         color: #aaa;
       }
 
+      /* Responsive styles for mobile */
       @media (max-width: 480px) {
         h1 {
-          font-size: 1.3rem;
+          font-size: 1.6rem;
         }
+
         p {
-          font-size: 0.85rem;
+          font-size: 1rem;
+          line-height: 1.5;
+          padding: 0 0.5rem;
         }
+
         .button-list a {
-          font-size: 0.85rem;
+          font-size: 1rem;
+          padding: 1.1rem 1.25rem;
+        }
+
+        .logo {
+          width: 100px;
+          height: 100px;
+        }
+
+        .card {
+          padding: 2rem 1.25rem;
         }
       }
 
+      /* Fade-in animation on page load */
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -153,13 +186,19 @@ let links = [
       }
     </style>
   </head>
+
   <body>
+    <!-- Main card layout -->
     <div class="card">
+
+      <!-- Dreami logo -->
       <img src="/assets/mainlogo.png" alt="Dreami Logo" class="logo" />
 
+      <!-- App name and tagline -->
       <h1>Dreami</h1>
       <p>Where your dreams meet understanding</p>
 
+      <!-- Dynamic button list rendered from links array -->
       <div class="button-list">
         {links.map((link) => (
           <a href={link.href} target="_blank" disabled={link.disabled}>
@@ -174,6 +213,7 @@ let links = [
         ))}
       </div>
 
+      <!-- Footer with dynamic year -->
       <div class="footer">
         Dreami © {new Date().getFullYear()}
       </div>
